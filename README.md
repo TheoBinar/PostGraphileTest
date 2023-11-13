@@ -1,6 +1,7 @@
 # Project Mgmt App
 
-Project management app from my [GraphQL crash course](https://youtu.be/BcLNfwF04Kw) on YouTube
+Project management app from Traversy Media Course [GraphQL crash course](https://youtu.be/BcLNfwF04Kw) on YouTube.
+Updated to use with PostgreSQL and PostGraphile.
 
 ## Usage
 
@@ -14,4 +15,4 @@ Project management app from my [GraphQL crash course](https://youtu.be/BcLNfwF04
 docker-compose up -d --build
 ```
 
-This will start backend, frontend and MongoDB.
+This will start backend, frontend and PostgreSQL.
