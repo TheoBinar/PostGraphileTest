@@ -1,0 +1,55 @@
+version: "3"
+
+services:
+  frontend:
+    build: client
+    container_name: client
+    restart: always
+    ports:
+      - 3000:3000
+    stdin_open: true
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    networks:
+      - react-express
+    depends_on:
+      - backend
+
+  backend:
+    build: server
+    container_name: server
+    restart: always
+    ports:
+      - 5000:5000
+    volumes:
+      - ./server:/app
+    depends_on:
+      - postgres
+    networks:
+      - express-postgres
+      - react-express
+
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: Test123
+      PGDATA: /var/lib/postgresql/data/pgdata
+    networks:
+      - express-postgres
+    volumes:
+      - ./data:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - express-postgres
+      - react-express
+
+networks:
+  react-express:
+  express-postgres:
